@@ -3,14 +3,23 @@
 {% block title %} Apperçu! {% endblock %}
 
 {% block body %}
-    <section class="show">
-        <article>
-            <h1>{{pin.title}}</h1>
-            <p>{{pin.description}}</p>
-            <div>
-                <a class="btn btn-primary" href="{{path('app_pin_edit',{id: pin.id})}}">Modifier</a>
-                <a href="#">Supprimer</a>
-            </div>
-        </article>
+    <section class="show row">
+        <div class="col-md-8 mx-auto">
+            <article class="pin">
+                <h1>{{pin.title}}</h1>
+                <p>{{pin.description}}</p>
+                <div class=" ">
+                    <a class="btn btn-primary ml-2" href="{{path('app_pin_edit',{id: pin.id})}}">Modifier</a>
+                    <a href="#" class="btn btn-danger deletion " onclick=" event.preventDefault(); confirm('Etes vous sûr de vouloir supprimer ce élément ?')
+                     && document.getElementById('js-pin-deletion').submit();">Supprimer</a>
+                </div>
+                <form id="js-pin-deletion" action="{{path('app_pin_delete', {id: pin.id})}}" class="d-none" method="post">
+                    <input type="hidden" name="_method" value="DELETE" id="">
+                    <input type="hidden" name="csrf_token" value="{{csrf_token('pin_deletion_' ~ pin.id)}}">
+                </form>
+            </article>
+        
+        </div>
     </section>
 {% endblock %}
+

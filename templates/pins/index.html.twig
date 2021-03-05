@@ -10,7 +10,7 @@
         {% for pin in pins %}
             
             <div class="p-2">
-                <a href="{{path('app_pin_edit',{id: pin.id})}}">
+                <a href="{{path('app_pin_show',{id: pin.id})}}">
                     <h2>{{pin.title}}</h2>
                 </a>
                 <p>{{pin.description}}</p>
