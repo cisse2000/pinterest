@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %} Apperçu! {% endblock %}
+
+{% block body %}
+    <section class="show">
+        <article>
+            <h1>{{pin.title}}</h1>
+            <p>{{pin.description}}</p>
+            <div>
+                <a class="btn btn-primary" href="{{path('app_pin_edit',{id: pin.id})}}">Modifier</a>
+                <a href="#">Supprimer</a>
+            </div>
+        </article>
+    </section>
+{% endblock %}

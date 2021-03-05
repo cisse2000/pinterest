@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %} Modification {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <section role="edit">
+                <h1>Modifier un pin</h1>
+                {{ include('layouts/partials/_pin_form.html.twig',{formSubmitted: 'Modifier'}) }}
+            </section>
+        
+        </div>
+        
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %} Création! {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <section role="create">
+                <h1>Créer un pin</h1>
+                {{ include('layouts/partials/_pin_form.html.twig') }}
+            </section>
+        
+        </div>
+    
+    </div>
+    
+{% endblock %}

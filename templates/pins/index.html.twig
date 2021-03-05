@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Accueil!{% endblock %}
+
+{% block body %}
+
+    <section class="container-fluid">
+        <h1> Liste de pins:  #{{pins|length}}</h1>
+        <hr class="m-3">
+        {% for pin in pins %}
+            
+            <div class="p-2">
+                <a href="{{path('app_pin_edit',{id: pin.id})}}">
+                    <h2>{{pin.title}}</h2>
+                </a>
+                <p>{{pin.description}}</p>
+            </div>
+            
+        {% endfor %}
+    </section>
+
+
+{% endblock %}
