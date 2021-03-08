@@ -27,3 +27,23 @@ body {
 }
 
 //End flashes stylisation
+.vich-image {
+    .custom-file {
+        @extend .mb-3;     
+    }
+    
+    img{
+
+        @extend .shadow;
+        @extend .img-thumbnail;
+
+    }
+}
+
+.pin img{
+
+   &:hover{
+        transform: scale(1.090);
+    }
+    transition: transform 0.3s ease-out;
+}

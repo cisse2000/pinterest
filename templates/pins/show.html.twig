@@ -6,8 +6,14 @@
     <section class="show row">
         <div class="col-md-8 mx-auto">
             <article class="pin">
-                <h1>{{pin.title}}</h1>
-                <p>{{pin.description}}</p>
+                <div class="w-100 rounded-top overflow-hidden">
+                    <img src="{{(pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg'))|imagine_filter('rectangular_thumbnail_large')}}" class="w-100  " alt="{{pin.title}}">
+                </div>
+                <div class="">
+                    <h1>{{pin.title}}</h1>
+                    <p>{{pin.description}}</p>
+                    <small class="pb-3">soumis {{pin.createdAt|ago}}  </small> 
+                </div>
                 <div class=" ">
                     <a class="btn btn-primary ml-2" href="{{path('app_pin_edit',{id: pin.id})}}">Modifier</a>
                     <a href="#" class="btn btn-danger deletion " onclick=" event.preventDefault(); confirm('Etes vous sûr de vouloir supprimer ce élément ?')

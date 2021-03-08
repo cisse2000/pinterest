@@ -5,19 +5,34 @@
 {% block body %}
 
     <section class="container-fluid">
-        <h1> Liste de pins:  #{{pins|length}}</h1>
-        <hr class="m-3">
-        {% for pin in pins %}
-            
-            <div class="p-2">
-                <a href="{{path('app_pin_show',{id: pin.id})}}">
-                    <h2>{{pin.title}}</h2>
-                </a>
-                <p>{{pin.description}}</p>
-            </div>
-            
-        {% endfor %}
+        {% if pins|length > 0 %}
+
+            <h1> Liste de pins:  #{{pins|length}}</h1>
+            <hr class="m-3">
+            {% for row in pins|batch(3) %}
+                <div class=" row mb-3">
+                    {% for pin in row %}
+                        <div class="col-md-4">
+                            <article class="pin bg-white rounded shadow">
+                               <div class="w-100 rounded-top overflow-hidden">
+                                    <a href="{{path('app_pin_show',{id: pin.id})}}">
+                                        <img src="{{(pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg'))|imagine_filter('squared_thumbnail_small')}}" class="w-100 " alt="{{pin.title}}">
+                                    </a>
+                               </div>
+                                <div class="p-2">
+                                    <a href="{{path('app_pin_show',{id: pin.id})}}" class="text-secondary text-decoration-none"><h2>{{pin.title}}</h2></a>
+                                    <p>{{pin.description|u.truncate(20 ,'...',true)}}</p>
+                                    <small>soumis {{pin.createdAt|ago}}</small>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}      
+                </div>
+            {% endfor %}
+        {% else %}   
+            <p class="text-center h1 mt-5">Pas de pin d'abord. <a href="{{path('app_pin_create')}}">Soit le premier</a></p>
+        {% endif %}
     </section>
 
-
+    
 {% endblock %}
