@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Pin;
 use App\Form\PinType;
 use App\Repository\PinRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,12 @@ class PinsController extends AbstractController
     public function __construct(EntityManagerInterface $entityManagerInterface)
     {
         $this->em = $entityManagerInterface;
+
+        // if($this->isGranted('ROLE_ADMIN')){
+        //     dd("Accordé");
+        // } else {
+        //     dd("Non Permis ! ");
+        // }
     }
 
     /**
@@ -33,7 +40,7 @@ class PinsController extends AbstractController
     /**
      *@Route("/pin/create", name="app_pin_create", methods={"GET","POST"})
     */
-    public function create(Request $request): Response
+    public function create(Request $request, UserRepository $userRepository): Response
     {
         $pin = new Pin;
         $form = $this->createForm(PinType::class,$pin);
@@ -41,6 +48,8 @@ class PinsController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
+            $pin->setUser($this->getUser());
+            // dd($pin);
             $this->em->persist($pin);
             $this->em->flush();
 

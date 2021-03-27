@@ -26,8 +26,13 @@ body {
     }
 }
 
+.edit .vich-image a {
+    @extend .w-100 , .overflow-hidden;
+}
+
 //End flashes stylisation
 .vich-image {
+
     .custom-file {
         @extend .mb-3;     
     }
@@ -41,8 +46,7 @@ body {
 }
 
 .pin img{
-
-   &:hover{
+    &:hover{
         transform: scale(1.090);
     }
     transition: transform 0.3s ease-out;

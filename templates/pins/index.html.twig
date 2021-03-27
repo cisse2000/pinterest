@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}Accueil!{% endblock %}
+{% block title %} {{title_url('Accueil')}} {% endblock %}
 
 {% block body %}
 
@@ -30,7 +30,7 @@
                 </div>
             {% endfor %}
         {% else %}   
-            <p class="text-center h1 mt-5">Pas de pin d'abord. <a href="{{path('app_pin_create')}}">Soit le premier</a></p>
+            <p class="text-center h1 mt-5">Pas de pin d'abord. <a href="{{path('app_pin_create')}}">Soyez le premier</a></p>
         {% endif %}
     </section>
 
